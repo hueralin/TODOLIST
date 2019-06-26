@@ -1,5 +1,13 @@
 # todolist
 **使用组件化开发的方式做一个todoList**
+目前实现的功能：
+1. 添加任务
+2. 完成任务
+3. 取消任务
+4. 查看已完成和未完成的任务
+5. 删除全部任务
+6. localStorage本地保存任务
+
 > A Vue.js project
 
 ## Build Setup
