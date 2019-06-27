@@ -77,10 +77,9 @@ export default {
   },
   methods: {
     add () {
-      this.tasks.unshift({id: ++this.tasksId, desc: this.taskDesc.trim(), completed: false})
+      this.tasks.unshift({id: Date.now(), desc: this.taskDesc.trim(), completed: false})
       this.taskDesc = ''
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
-      localStorage.setItem('tasksId', JSON.stringify(this.tasksId))
     },
     finish (id) {
       this.tasks.filter((item) => item.id === id)[0].completed = true
@@ -106,14 +105,11 @@ export default {
   mounted () {
     // 从localStorage获取task
     if (window.localStorage) {
-      let tasksId = localStorage.getItem('tasksId')
       let tasks = localStorage.getItem('tasks')
-      if (tasks && tasksId) {
+      if (tasks) {
         this.tasks = JSON.parse(tasks)
-        this.tasksId = JSON.parse(tasksId)
       } else {
         localStorage.setItem('tasks', JSON.stringify(this.tasks))
-        localStorage.setItem('tasksId', JSON.stringify(this.tasksId))
       }
     } else {
       console.log('您的电脑不支持localStorage!')
@@ -130,11 +126,8 @@ export default {
   max-width: 900px;
 }
 .todolist {
-  /* display: flex; */
-  /* flex-direction: column; */
   position: relative;
   padding: 1rem;
-  /* border-radius: 5px; */
   border: 1px solid #eee;
 }
 header {
@@ -209,10 +202,6 @@ section li img {
   background: url('./img/vue.png');
   background-size: 100%;
 }
-/* .dropBtn:hover {
-  color: #fff;
-  background-color: #337ab7;
-} */
 footer {
   margin-top: 10px;
   padding-top: 5px;
